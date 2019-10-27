@@ -8,17 +8,9 @@ html, body
 header
 {
      width: 100vw;
-     height: 200px;
+     height: 250px
      background-color: coral;
-     text-align: center;
 }
-     header.logo-div
-     {
-     	margin: auto;
-  	width: 50%;
-  	border: 3px solid green;
-  	padding: 10px;
-     }
      header.brand
      {
 	font-family: 'Alegreya Sans SC', sans-serif;
