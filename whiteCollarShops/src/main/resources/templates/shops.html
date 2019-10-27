@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>White Collar Shops</title>
+    <!-- Adding Bootstrap files -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://localhost/whiteCollarShops/css/styles.css" />
+</head>
+<body>
+    <header th:insert="~{header :: headerTemplate}"></header>
+    <section id="showCurrentShops" >
+        <!-- Show Current shops-->
+        <div class="container w-50">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            Shop List
+                        </th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Shop Name</td>
+                    <td>Shop Capacity</td>
+                </tr>
+                <tr th:each="shop : ${ShopsList}">
+                    <td >
+                        <a th:href="@{/order/{id}/pictures(id=${shop.id})}" th:text="${shop.name}" >ShopName</a>
+                    </td>
+                    <td th:text="${shop.capacity}">Capacity</td>
+                </tr>
+
+            </table>
+        </div>
+
+
+    </section>
+    <section id="addShops">
+        <!-- Add new shops -->
+        <div class="container w-50">
+            <form method="post">
+                <table class="table ">
+                    <thead>
+                    <tr>
+                        <th colspan="2">
+                            Do you want to add a new shop?
+                        </th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td><label for="name">Shop Name:</label></td>
+                        <td><input type="text" id="name" name="name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="capacity">Shop Capacity:</label></td>
+                        <td><input type="text" id="capacity" name="capacity" required> </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <input type="submit" value="Submit">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+    </section>
+    <footer th:insert="~{footer :: footerTemplate}"></footer>
+</body>
+</html>

@@ -12,23 +12,10 @@
     <link rel="stylesheet" type="text/css" href="http://localhost/whiteCollarShops/css/styles.css" />
 </head>
 <body>
-    <header th:insert="~{header :: headerTemplate}"></header>
-    <nav th:insert="~{nav :: navTemplate}"></nav>
-    <section>
-        <div class="login_error" th:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-    </section>
-    <section class="login-form" >
-        <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-    </section>
-    <footer th:insert="~{footer :: footerTemplate}"></footer>
+<header th:insert="~{header :: headerTemplate}"></header>
+<section id="index-content">
+
+</section>
+<footer th:insert="~{footer :: footerTemplate}"></footer>
 </body>
 </html>
