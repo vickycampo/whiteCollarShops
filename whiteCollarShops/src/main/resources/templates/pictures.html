@@ -9,18 +9,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://localhost/whiteCollarShops/css/styles.css" />
+
 </head>
 <body>
 <header th:insert="~{header :: headerTemplate}"></header>
+<section id="display-messages" th:if="${message} != ''">
+    <!-- In this section we display messages if we have any -->
+    <div class="container">
+        <div class="row">
+            <div class="offset-4 col-4">
+                <p th:if="${messageType} == 'success'" th:text="${message}" class="text-center text-secondary">text</p>
+                <p th:if="${messageType} == 'error'" th:text="${message}" class="text-center text-danger">text</p>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="showCurrentPictures" >
-    <!-- Show Current shops-->
+    <!-- Show Current pictures-->
     <div class="container w-50">
         <table class="table">
             <thead>
             <tr>
-                <th colspan="2">
-                    Pictures List
+                <th colspan="4">
+                    <p  th:text="${shopName}" class="text-center text-secondary">ShopName</p>
+                    <p class="text-center text-secondary">Picture List</p>
                 </th>
             </tr>
             </thead>
@@ -29,10 +41,13 @@
                 <td>Author</td>
                 <td>Price</td>
                 <td>Arrival Date</td>
+
             </tr>
-            <tr th:each="shop : ${ShopsList}">
-                <td th:text="${shop.name}">The Shop Name</td>
-                <td th:text="${shop.capacity}">10</td>
+            <tr th:each="picture : ${PicturesList}">
+                <td th:text="${picture.name}">PictureData</td>
+                <td th:text="${picture.author}">PictureData</td>
+                <td th:text="${picture.price}">PictureData</td>
+                <td th:text="${picture.arrival_date}">PictureData</td>
             </tr>
 
         </table>
@@ -40,26 +55,32 @@
 
 
 </section>
-<section id="addShops">
-    <!-- Add new shops -->
+<section id="addPictures" th:if="${EnableForm}">
+    <!-- Add new pictrues -->
     <div class="container w-50">
-        <form th:object="${PicturesForm}" method="post">
+        <form method="post">
+            <input type="hidden" name="_method" value="post"/>
             <table class="table ">
                 <thead>
                 <tr>
                     <th colspan="2">
-                        Do you want to add a new shop?
+                        Do you want to add a new picture to this shop?
                     </th>
                 </tr>
                 </thead>
                 <tr>
-                    <td><label for="name">Shop Name:</label></td>
-                    <td><input type="text" id="name" name="name" required></td>
+                    <td><label for="name">Picture Name:</label></td>
+                    <td><input type="text" id="name" name="name" th:value="${FormName}" required></td>
                 </tr>
                 <tr>
-                    <td><label for="capacity">Shop Capacity:</label></td>
-                    <td><input type="text" id="capacity" name="capacity" required> </td>
+                    <td><label for="author">Author:</label></td>
+                    <td><input type="text" id="author" name="author" th:value="${FormAuthor}" required> </td>
                 </tr>
+                <tr>
+                    <td><label for="price">Price:</label></td>
+                    <td><input type="text" id="price" name="price" th:value="${FormPrice}" required> </td>
+                </tr>
+
                 <tr>
                     <td colspan="2" class="text-center">
                         <input type="submit" value="Submit">
@@ -68,8 +89,28 @@
             </table>
         </form>
     </div>
+</section>
+<section id="burnDown">
+    <div class="container">
+        <div class="row">
+            <div class="offset-3 col-3 text-center">
+                <a type="button" class="btn btn-link" th:href="@{/shops}">Go back to shops</a>
+            </div>
+            <div class="col-3 text-center">
+                <form method="post">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <input type="hidden" name="name" value=""/>
+                    <input type="hidden" name="author" value=""/>
+                    <input type="hidden" name="price" value="DELETE"/>
 
+                    <input class="btn btn-link" type="submit" value="BurnDown">
+                </form>
+
+
+            </div>
+        </div>
+    </div>
 </section>
 <footer th:insert="~{footer :: footerTemplate}"></footer>
+
 </body>
-</html>

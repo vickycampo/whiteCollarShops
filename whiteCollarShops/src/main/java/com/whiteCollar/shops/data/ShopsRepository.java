@@ -12,4 +12,5 @@ import java.util.List;
 public interface ShopsRepository extends CrudRepository<Shops, Integer>
 {
     List<Shops> findByNameIgnoreCase(String name);
+    Shops findById (int id);
 }

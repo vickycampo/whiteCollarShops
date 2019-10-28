@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Getter @Setter @NoArgsConstructor
@@ -23,8 +22,8 @@ public class Pictures {
 
     private double price;
 
-    private Date arrival_date;
+    private String arrival_date;
 
-    private int idShops;
+    private int shopid;
 
 }

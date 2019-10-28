@@ -10,9 +10,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://localhost/whiteCollarShops/css/styles.css" />
+
 </head>
 <body>
     <header th:insert="~{header :: headerTemplate}"></header>
+    <section id="display-messages" th:if="${message} != ''">
+        <!-- In this section we display messages if we have any -->
+        <div class="container">
+            <div class="row">
+                <div class="offset-4 col-4">
+                    <p th:if="${messageType} == 'success'" th:text="${message}" class="text-center text-secondary">text</p>
+                    <p th:if="${messageType} == 'error'" th:text="${message}" class="text-center text-danger">text</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="showCurrentShops" >
         <!-- Show Current shops-->
         <div class="container w-50">
@@ -30,7 +42,7 @@
                 </tr>
                 <tr th:each="shop : ${ShopsList}">
                     <td >
-                        <a th:href="@{/order/{id}/pictures(id=${shop.id})}" th:text="${shop.name}" >ShopName</a>
+                        <a th:href="@{/shops/{id}/pictures(id=${shop.id})}" th:text="${shop.name}" >ShopName</a>
                     </td>
                     <td th:text="${shop.capacity}">Capacity</td>
                 </tr>
@@ -54,11 +66,11 @@
                     </thead>
                     <tr>
                         <td><label for="name">Shop Name:</label></td>
-                        <td><input type="text" id="name" name="name" required></td>
+                        <td><input type="text" id="name" name="name" th:value="${FormName}" required></td>
                     </tr>
                     <tr>
                         <td><label for="capacity">Shop Capacity:</label></td>
-                        <td><input type="text" id="capacity" name="capacity" required> </td>
+                        <td><input type="text" id="capacity" name="capacity" th:value="${FormCapacity}" required> </td>
                     </tr>
                     <tr>
                         <td colspan="2" class="text-center">
@@ -71,5 +83,6 @@
 
     </section>
     <footer th:insert="~{footer :: footerTemplate}"></footer>
+
 </body>
 </html>

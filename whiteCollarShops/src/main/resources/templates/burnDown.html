@@ -12,8 +12,16 @@
 </head>
 <body>
 <header th:insert="~{header :: headerTemplate}"></header>
-<section id="index-content">
-
+<section id="display-messages" th:if="${message} != ''">
+    <!-- In this section we display messages if we have any -->
+    <div class="container">
+        <div class="row">
+            <div class="offset-4 col-4">
+                <p th:if="${messageType} == 'success'" th:text="${message}" class="text-center text-secondary">text</p>
+                <p th:if="${messageType} == 'error'" th:text="${message}" class="text-center text-danger">text</p>
+            </div>
+        </div>
+    </div>
 </section>
 <footer th:insert="~{footer :: footerTemplate}"></footer>
 </body>
