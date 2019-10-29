@@ -13,8 +13,14 @@
 <body>
 <header th:insert="~{header :: headerTemplate}"></header>
 <section id="display-messages" th:if="${message} != ''"  th:insert="~{errors :: errorDisplay}"></section>
-<section id="index-content">
-
+<section id="404">
+    <div class="container">
+        <div class="row">
+            <div class="offset-4 col-4 text-center">
+                <a type="button" class="btn btn-link" th:href="@{/shops}">Go back to shops</a>
+            </div>
+        </div>
+    </div>
 </section>
 <footer th:insert="~{footer :: footerTemplate}"></footer>
 </body>

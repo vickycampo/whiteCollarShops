@@ -13,17 +13,7 @@
 </head>
 <body>
 <header th:insert="~{header :: headerTemplate}"></header>
-<section id="display-messages" th:if="${message} != ''">
-    <!-- In this section we display messages if we have any -->
-    <div class="container">
-        <div class="row">
-            <div class="offset-4 col-4">
-                <p th:if="${messageType} == 'success'" th:text="${message}" class="text-center text-secondary">text</p>
-                <p th:if="${messageType} == 'error'" th:text="${message}" class="text-center text-danger">text</p>
-            </div>
-        </div>
-    </div>
-</section>
+<section id="display-messages" th:if="${message} != ''"  th:insert="~{errors :: errorDisplay}"></section>
 <section id="showCurrentPictures" >
     <!-- Show Current pictures-->
     <div class="container w-50">
@@ -94,7 +84,7 @@
     <div class="container">
         <div class="row">
             <div class="offset-3 col-3 text-center">
-                <a type="button" class="btn btn-link" th:href="@{/shops}">Go back to shops</a>
+                <a  class="btn btn-link" th:href="@{/shops}">Go back to shops</a>
             </div>
             <div class="col-3 text-center">
                 <form method="post">

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<p th:text="${messageType}></p>
+<p th:text="${message}></p>
+<div class="container" th:fragment="errorDisplay">
+    <div class="row">
+        <div class="offset-4 col-4">
+
+            <p th:if="${messageType} == 'success'" th:text="${message}" class="text-center text-secondary">text</p>
+            <p th:if="${messageType} == 'error'" th:text="${message}" class="text-center text-danger">text</p>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

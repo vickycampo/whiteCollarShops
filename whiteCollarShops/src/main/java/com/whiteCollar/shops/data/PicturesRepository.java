@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface PicturesRepository extends CrudRepository<Pictures, Integer>
 {
-    List<Pictures> findByShopid(int Shop_id);
+    List<Pictures> findByShopid(int shopid);
 }
