@@ -5,6 +5,7 @@ import com.whiteCollar.shops.data.PicturesRepository;
 
 import com.whiteCollar.shops.data.Shops;
 import com.whiteCollar.shops.data.ShopsRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
